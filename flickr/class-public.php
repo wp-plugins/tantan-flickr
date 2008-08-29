@@ -1,7 +1,7 @@
 <?php
 /*
-$Revision: 196 $
-$Date: 2008-07-08 23:52:25 -0400 (Tue, 08 Jul 2008) $
+$Revision: 216 $
+$Date: 2008-08-26 00:07:15 -0400 (Tue, 26 Aug 2008) $
 $Author: joetan54 $
 */
 class TanTanFlickrPlugin {
@@ -21,7 +21,7 @@ class TanTanFlickrPlugin {
 	/*
 	 * Get a selection of random photos
 	 */
-	function getrandomPhotos($tags='', $num=15, $everyone=false, $usecache=true) {
+	function getRandomPhotos($tags='', $num=15, $everyone=false, $usecache=true) {
 		$auth_token = get_option('silas_flickr_token');
 		$baseurl = get_option('silas_flickr_baseurl');
 		$linkoptions = get_option('silas_flickr_linkoptions');

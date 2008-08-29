@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-$Revision: 196 $
-$Date: 2008-07-08 23:52:25 -0400 (Tue, 08 Jul 2008) $
+$Revision: 212 $
+$Date: 2008-08-25 23:26:02 -0400 (Mon, 25 Aug 2008) $
 $Author: joetan54 $
 
 */
@@ -498,6 +498,9 @@ class TanTanFlickr extends tantan_phpFlickr {
        return false;
     }
     function _sanitizeTitle($title) {
+		if (function_exists('sanitize_title_with_dashes')) {
+			return sanitize_title_with_dashes($title);
+		}
         // try this WP function sanitize_title_with_dashes()
 
         // comment out these two lines, and use the next two if you like underscores instead

@@ -1,7 +1,7 @@
 <?php
 /*
-$Revision: 205 $
-$Date: 2008-07-16 12:41:38 -0400 (Wed, 16 Jul 2008) $
+$Revision: 224 $
+$Date: 2008-08-28 22:11:07 -0400 (Thu, 28 Aug 2008) $
 $Author: joetan54 $
 */
 require_once(dirname(__FILE__).'/class-public.php');
@@ -44,7 +44,8 @@ class TanTanFlickrPluginAdmin extends TanTanFlickrPlugin {
             echo "<div class='wrap'>
             <h2>Permissions Error</h2>
             <p>This plugin requires that the directory <strong>".dirname(__FILE__)."/flickr-cache/</strong> be writable by the web server.</p> 
-            <p>Please contact your server administrator to ensure the proper permissions are set for this directory. </p>
+            <p>You may want to try to manually delete this flickr-cache directory, and have the plugin try to create it to see if that will fix this problem.</p>
+            <p>Otherwise, please contact your server administrator to ensure the proper permissions are set for this directory. </p>
             </div>
             ";
             return;
