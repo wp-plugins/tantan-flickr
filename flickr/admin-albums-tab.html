@@ -26,10 +26,13 @@ $photoJSONs = array();
 $id = 0;
 $hasShortCode = function_exists('add_shortcode');
 foreach ($albums as $album):
+$album['flickrURL'] = 'http://www.flickr.com/photos/'.$user['user']['nsid'].'/sets/'.$album['id'].'/';
+$album['blogURL'] = $home.$baseurl.'album/'.$album['id'].'/'.$album['pagename'];
+
 if ($baseurl && !$everyone && ($linkoptions != 'flickr')) {
-    $album['targetURL'] = $home.$baseurl.'album/'.$album['id'].'/'.$album['pagename'];
+    $album['targetURL'] = $album['blogURL'];
 } else {
-	$album['targetURL'] = 'http://www.flickr.com/photos/'.$user['user']['nsid'].'/sets/'.$album['id'].'/';
+	$album['targetURL'] = $album['flickrURL'];
 }
 $photoJSONs[] = $json->encode($album);
 ?>
@@ -80,6 +83,8 @@ endforeach;?>
 		<label for="album-image-size-square">Square</label>
 		<input name="album-image-size" id="album-image-size-thumb" value="Thumbnail" type="radio" checked="checked">
 		<label for="album-image-size-thumb">Thumbnail</label>
+		<input name="album-image-size" id="album-image-size-small" value="Small" type="radio">
+		<label for="album-image-size-small">Small</label>
 		<input name="album-image-size" id="album-image-size-medium" value="Medium" type="radio">
 		<label for="album-image-size-medium">Medium</label>
 		<input name="album-image-size" id="album-image-size-large" value="Large" type="radio">

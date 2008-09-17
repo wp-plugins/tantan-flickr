@@ -1,13 +1,17 @@
+/*
+$Revision: 280 $
+$Date: 2008-09-17 10:57:40 -0400 (Wed, 17 Sep 2008) $
+$Author: joetan54 $
+*/
 jQuery(document).ready(function($) {
-	$(photos) // json'd object containing info for all photos
-	   .each(function(i) { 
-	       //console.log(i, this)
-	       $('#file-link-'+i).click(function() {    
-	               $('#flickr-photo-'+i).siblings().toggle();
-	               tantan_toggleOptions(i)
-	               return false;
-	       });
-	   });
+    // json'd object containing info for all photos
+	$(photos).each(function(i) { 
+       $('#file-link-'+i).click(function() {    
+               $('#flickr-photo-'+i).siblings().toggle();
+               tantan_toggleOptions(i)
+               return false;
+       });
+   });
 	$('button.photo-url-dest').click(function(){
 		var url = jQuery(this).attr('url');
 		if (url == 'none') url = '';
@@ -60,7 +64,7 @@ function tantan_toggleOptions(i) {
 	$ = jQuery;
 	
     photo = photos[i];
-	$('#photo-meta').html('<strong>'+photo['title']+'</strong><br />'+(photo['photos'] ? (photo['photos']+' photos'): ''));
+	$('#photo-meta').html('<strong>'+photo['title']+'</strong><br />'+(photo['photos'] ? (photo['photos']+' photos<br />'): '')+(photo['flickrURL'] ? ('<a href="'+photo['flickrURL']+'" target="_blank">View this on Flickr.com &gt;</a><br />') : ''));
 	$('#photo-id').val(i);
     $('#photo-title').val(photo['title']);
     $('#photo-caption').val(photo['description']);
@@ -87,20 +91,25 @@ function tantan_addPhoto(photo, size, opts) {
 	}
 	var h = tantan_makePhotoHTML(photo, size, opts);
 
-	if (typeof top.send_to_editor == 'function') {
-		top.send_to_editor(h);
-	} else {
-	    var win = window.opener ? window.opener : window.dialogArguments;
-		if ( !win ) win = top;
-		tinyMCE = win.tinyMCE;
-		if ( typeof tinyMCE != 'undefined' && tinyMCE.getInstanceById('content') ) {
-			tinyMCE.selectedInstance.getWin().focus();
-			tinyMCE.execCommand('mceInsertContent', false, h);
-		} else if (win.edInsertContent) win.edInsertContent(win.edCanvas, h);
-	}
-	if (typeof top.tb_remove == 'function') {
+	var win = window.dialogArguments || opener || parent || top;
+	var tinyMCE = win.tinyMCE;
+	var tinymce = win.tinymce;
+	if ( typeof tinyMCE != 'undefined' && ( ed = win.tinyMCE.activeEditor ) && !ed.isHidden() ) {
+		ed.focus();
+		if (tinymce.isIE)
+			ed.selection.moveToBookmark(tinymce.EditorManager.activeEditor.windowManager.bookmark);
+
+//		if ( h.indexOf('[caption') != -1 )
+//			h = ed.plugins.wpeditimage._do_shcode(h);
+		
+		ed.execCommand('mceInsertContent', false, h);
+	} else if (typeof win.edInsertContent != 'function') edInsertContent(edCanvas, h);
+
+		
+		
+	if (typeof win.tb_remove == 'function') {
 		if (jQuery('#image-close-check:checked').val())  {
-			top.tb_remove();
+			win.tb_remove();
 		} else {
 			jQuery('input.cancel').click();
 		}

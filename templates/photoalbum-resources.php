@@ -1,5 +1,9 @@
 <?php
 /*
+$Revision: 277 $
+$Date: 2008-09-16 23:36:54 -0400 (Tue, 16 Sep 2008) $
+$Author: joetan54 $
+
 Copy this file into your current active theme's directory to customize this template
 
 This template resource file defines the template tags used to create the HTML for your photos.

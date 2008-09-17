@@ -25,7 +25,9 @@
     <td class="field"><input type="text" value="" id="photo-url" /><br />
 		<button type="button" id="photo-url-none"   class="button photo-url-dest" value="">None</button>
 		<button type="button" id="photo-url-flickr" class="button photo-url-dest" value="" title="Link to the Flickr page for this photo">Flickr</button>
+		<?php if ($linkToBlog):?>
 		<button type="button" id="photo-url-blog"   class="button photo-url-dest" value="" title="Link to this blog's page">Blog</button>
+		<?php endif;?>
 <!--
 		<button type="button" class="button photo-url-dest" value="" title="Link to the image URL">File</button>
 		<button type="button" class="button photo-url-dest" value="" title="Link to this post">Post</button>
@@ -54,6 +56,8 @@
 		<label for="image-size-square">Square</label>
 		<input name="image-size" id="image-size-thumb" value="Thumbnail" type="radio">
 		<label for="image-size-thumb">Thumbnail</label>
+		<input name="image-size" id="image-size-small" value="Small" type="radio">
+		<label for="image-size-small">Small</label>
 		<input name="image-size" id="image-size-medium" value="Medium" type="radio">
 		<label for="image-size-medium">Medium</label>
 		<input name="image-size" id="image-size-large" value="Large" type="radio">
