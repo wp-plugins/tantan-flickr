@@ -1,7 +1,7 @@
 <?php
 /*
-$Revision: 266 $
-$Date: 2008-09-15 22:51:17 -0400 (Mon, 15 Sep 2008) $
+$Revision: 292 $
+$Date: 2008-09-20 18:54:07 -0400 (Sat, 20 Sep 2008) $
 $Author: joetan54 $
 */
 require_once(dirname(__FILE__).'/class-public.php');
@@ -63,7 +63,7 @@ class TanTanFlickrPluginAdmin extends TanTanFlickrPlugin {
         } elseif (@constant('DB_CHARSET') === null) {
 			$error = "Your database character encoding does not seem to be set. It is <strong>strongly</strong> recommended that you set it to <em>utf8</em> for maximum compatibility. <a href=\"http://codex.wordpress.org/Editing_wp-config.php#Database_character_set\">Instructions are available here.</a> ".
 				"Once you have set your database encoding, please deactivate and reactivate this plugin.";
-		}
+		} 
 
         if ($_POST['action'] == 'savekey') {
             update_option('silas_flickr_apikey', $_POST['flickr_apikey']);
