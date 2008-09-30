@@ -1,7 +1,7 @@
 <?php
 /*
-$Revision: 263 $
-$Date: 2008-09-15 16:31:39 -0400 (Mon, 15 Sep 2008) $
+$Revision: 297 $
+$Date: 2008-09-22 11:15:23 -0400 (Mon, 22 Sep 2008) $
 $Author: joetan54 $
 */
 class TanTanFlickrPlugin {
@@ -113,13 +113,18 @@ class TanTanFlickrPlugin {
             ));
             $user = $flickr->auth_checkToken();
             $nsid = $user['user']['nsid'];
-			if (!$usecache) {
-				$flickr->clearCacheStale('search'); // should probably not blanket clear out everything in 'search'
-				$flickr->clearCacheStale('getRecent');
-			}
+				
             if (!$tags && $everyone) {
+                if (!$usecache) {
+                    $flickr->clearCacheStale('getRecent', true);
+    				$flickr->clearCacheStale('flickr.photos.getRecent', true);
+    			}
                 $photos = $flickr->getRecent(NULL, $max, $offsetpage);
             } else {
+    			if (!$usecache) {
+    				$flickr->clearCacheStale('search', true);
+    				$flickr->clearCacheStale('flickr.photos.search', true);
+    			}
                 $photos = $flickr->search(array(
                     'tags' => ($tags ? $tags : ''),
                     'user_id' => ($everyone ? '' : $nsid),
@@ -128,9 +133,8 @@ class TanTanFlickrPlugin {
                     'page' => $offsetpage,
                 ));
             }
-            //if (!$usecache) $flickr->doneClearCache();
-            //$this->_silas_cacheExpire = -1;
-			foreach ($photos as $k => $photo) {
+
+            foreach ($photos as $k => $photo) {
 				$photos[$k]['info'] = $flickr->getPhoto($photo['id']);
 			}
             return $photos;
@@ -271,7 +275,7 @@ class TanTanFlickrPlugin {
                 'hidePrivatePhotos' => get_option('silas_flickr_hideprivate'),
             ));
             
-            $parts = explode('/', substr($_SERVER['_TANTAN_FLICKR_REQUEST_URI'], strlen($_SERVER['REQUEST_URI'])));
+            $parts = explode('/', substr($_SERVER['_TANTAN_FLICKR_REQUEST_URI'], strlen(TANTAN_FLICKR_BASEURL)));
             $request = array();
             $title = '';
             $i = 0;

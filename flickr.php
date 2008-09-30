@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 Change Log: http://code.google.com/p/photo-album/wiki/ChangeLog
 
-$Revision: 281 $
-$Date: 2008-09-17 11:04:45 -0400 (Wed, 17 Sep 2008) $
+$Revision: 316 $
+$Date: 2008-09-30 00:48:03 -0400 (Tue, 30 Sep 2008) $
 $Author: joetan54 $
 
 */
@@ -61,8 +61,7 @@ if (ereg('/wp-admin/', $_SERVER['REQUEST_URI'])) { // just load in admin
     if (TANTAN_FLICKR_BASEURL) {
         if (strpos($_SERVER['REQUEST_URI'], TANTAN_FLICKR_BASEURL) === 0) {
             $_SERVER['_TANTAN_FLICKR_REQUEST_URI'] = $_SERVER['REQUEST_URI'];
-            $_SERVER['REQUEST_URI'] = TANTAN_FLICKR_BASEURL;
-        
+
             require_once(dirname(__FILE__).'/flickr/class-public.php');
             $TanTanFlickrPlugin =& new TanTanFlickrPlugin();
 			$SilasFlickrPlugin =& $TanTanFlickrPlugin; // backwards compatibility
