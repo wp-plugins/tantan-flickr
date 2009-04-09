@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 Change Log: http://code.google.com/p/photo-album/wiki/ChangeLog
 
 $Revision: 321 $
-$Date: 2008-10-03 17:10:43 -0400 (Fri, 03 Oct 2008) $
+$Date: 2008-10-03 14:10:43 -0700 (Fri, 03 Oct 2008) $
 $Author: joetan54 $
 
 */

@@ -6,7 +6,7 @@ Should also work with the HTTPS protocol
 Important: Not every method has been ported, just the ones that were needed.
 
 $Revision: 321 $
-$Date: 2008-10-03 17:10:43 -0400 (Fri, 03 Oct 2008) $
+$Date: 2008-10-03 14:10:43 -0700 (Fri, 03 Oct 2008) $
 $URL: https://photo-album.googlecode.com/svn/trunk/tantan-flickr/lib/curl.php $
 */
 
