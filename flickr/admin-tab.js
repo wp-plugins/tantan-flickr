@@ -1,6 +1,6 @@
 /*
 $Revision: 286 $
-$Date: 2008-09-19 12:15:17 -0400 (Fri, 19 Sep 2008) $
+$Date: 2008-09-19 09:15:17 -0700 (Fri, 19 Sep 2008) $
 $Author: joetan54 $
 */
 jQuery(document).ready(function($) {
