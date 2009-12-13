@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: joetan
+Contributors: joetan, veveveuri
 Tags: flickr, photo album, gallery, photos, images, post, widget, admin
 Requires at least: 2.5
 Tested up to: 2.7
